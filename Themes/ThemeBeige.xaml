@@ -1,0 +1,26 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!-- Sunny Yellow & Orange theme -->
+    <SolidColorBrush x:Key="Theme.Bg" Color="#FFFDF0"/> <!-- Very light sunny yellow -->
+    <SolidColorBrush x:Key="Theme.PanelBg" Color="#FFFDF0"/>
+    <SolidColorBrush x:Key="Theme.CardBg" Color="#FFF9E0"/>
+    
+    <SolidColorBrush x:Key="Theme.Primary" Color="#F97316"/> <!-- Vibrant Orange -->
+    <SolidColorBrush x:Key="Theme.PrimaryDark" Color="#EA580C"/>
+    <Color x:Key="Theme.PrimaryDarkColor">#EA580C</Color>
+    <Color x:Key="Theme.ShadowColor">#40F97316</Color> <!-- Subtle orange glow -->
+
+    <SolidColorBrush x:Key="Theme.TextBase" Color="#431407"/> <!-- Very dark brown-orange -->
+    <SolidColorBrush x:Key="Theme.TextMuted" Color="#9A3412"/>
+    <SolidColorBrush x:Key="Theme.TextDesc" Color="#C2410C"/>
+    
+    <SolidColorBrush x:Key="Theme.Border" Color="#FED7AA"/>
+    <SolidColorBrush x:Key="Theme.Sep" Color="#FFEDD5"/>
+    
+    <SolidColorBrush x:Key="Theme.ControlBg" Color="#FFEDD5"/>
+    <SolidColorBrush x:Key="Theme.ControlHover" Color="#FED7AA"/>
+
+    <SolidColorBrush x:Key="Theme.Aurora1" Color="#FBBF24"/> <!-- Amber -->
+    <SolidColorBrush x:Key="Theme.Aurora2" Color="#FB923C"/> <!-- Orange -->
+    <SolidColorBrush x:Key="Theme.RestBg" Color="#FFFBEB"/> <!-- Warm rest background -->
+</ResourceDictionary>

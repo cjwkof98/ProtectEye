@@ -1,0 +1,25 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <SolidColorBrush x:Key="Theme.Bg" Color="#0B0E14"/>
+    <SolidColorBrush x:Key="Theme.PanelBg" Color="#0B0E14"/>
+    <SolidColorBrush x:Key="Theme.CardBg" Color="#151821"/>
+    
+    <SolidColorBrush x:Key="Theme.Primary" Color="#2DD4BF"/>
+    <SolidColorBrush x:Key="Theme.PrimaryDark" Color="#0D9488"/>
+    <Color x:Key="Theme.PrimaryDarkColor">#0D9488</Color>
+    <Color x:Key="Theme.ShadowColor">#0D9488</Color> <!-- Neon shadow -->
+    
+    <SolidColorBrush x:Key="Theme.TextBase" Color="#F8FAFC"/>
+    <SolidColorBrush x:Key="Theme.TextMuted" Color="#94A3B8"/>
+    <SolidColorBrush x:Key="Theme.TextDesc" Color="#64748B"/>
+    
+    <SolidColorBrush x:Key="Theme.Border" Color="#272A30"/>
+    <SolidColorBrush x:Key="Theme.Sep" Color="#1E1E24"/>
+    
+    <SolidColorBrush x:Key="Theme.ControlBg" Color="#1E293B"/>
+    <SolidColorBrush x:Key="Theme.ControlHover" Color="#334155"/>
+
+    <SolidColorBrush x:Key="Theme.Aurora1" Color="#0D9488"/>
+    <SolidColorBrush x:Key="Theme.Aurora2" Color="#1E3A8A"/>
+    <SolidColorBrush x:Key="Theme.RestBg" Color="#080A10"/> <!-- Near black for maximal pop -->
+</ResourceDictionary>

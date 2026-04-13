@@ -1,0 +1,26 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!-- Anthracite Gray, very distinct from Black -->
+    <SolidColorBrush x:Key="Theme.Bg" Color="#20222A"/>
+    <SolidColorBrush x:Key="Theme.PanelBg" Color="#20222A"/> 
+    <SolidColorBrush x:Key="Theme.CardBg" Color="#2A2C36"/>
+    
+    <SolidColorBrush x:Key="Theme.Primary" Color="#38BDF8"/>
+    <SolidColorBrush x:Key="Theme.PrimaryDark" Color="#0284C7"/>
+    <Color x:Key="Theme.PrimaryDarkColor">#0284C7</Color>
+    <Color x:Key="Theme.ShadowColor">#400284C7</Color> <!-- Subtle blue shadow -->
+    
+    <SolidColorBrush x:Key="Theme.TextBase" Color="#FFFFFF"/> <!-- Higher contrast white -->
+    <SolidColorBrush x:Key="Theme.TextMuted" Color="#CBD5E1"/>
+    <SolidColorBrush x:Key="Theme.TextDesc" Color="#94A3B8"/>
+    
+    <SolidColorBrush x:Key="Theme.Border" Color="#3F4252"/>
+    <SolidColorBrush x:Key="Theme.Sep" Color="#343746"/>
+    
+    <SolidColorBrush x:Key="Theme.ControlBg" Color="#3A3E4E"/>
+    <SolidColorBrush x:Key="Theme.ControlHover" Color="#4A4F62"/>
+
+    <SolidColorBrush x:Key="Theme.Aurora1" Color="#0284C7"/>
+    <SolidColorBrush x:Key="Theme.Aurora2" Color="#312E81"/>
+    <SolidColorBrush x:Key="Theme.RestBg" Color="#181A22"/> <!-- Very dark gray for rest window to pop text -->
+</ResourceDictionary>

@@ -20,9 +20,9 @@
         </EventTrigger>
     </Window.Triggers>
     
-    <Border x:Name="MainBorder" Background="#E60A0A0B" CornerRadius="32" Padding="20,10" BorderBrush="#3F3F46" BorderThickness="1" Margin="0,0,0,0">
+    <Border x:Name="MainBorder" Background="{DynamicResource Theme.CardBg}" Opacity="0.94" CornerRadius="32" Padding="20,10" BorderBrush="{DynamicResource Theme.Border}" BorderThickness="1" Margin="0,0,0,0">
         <Border.Effect>
-            <DropShadowEffect BlurRadius="15" Direction="270" ShadowDepth="5" Opacity="0.5"/>
+            <DropShadowEffect BlurRadius="15" Direction="270" ShadowDepth="5" Color="Black" Opacity="0.5"/>
         </Border.Effect>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -33,21 +33,21 @@
             <!-- 图标 -->
             <Viewbox Grid.Column="0" Width="24" Height="24" Margin="0,0,12,0" VerticalAlignment="Center">
                 <Canvas Width="24" Height="24">
-                    <Path Stroke="#2DD4BF" StrokeThickness="1.5" Fill="Transparent" Data="M12 21.5C5.37 21.5 1.5 14.93 1.5 12s3.87-9.5 10.5-9.5 10.5 6.57 10.5 9.5-3.87 9.5-10.5 9.5z"/>
-                    <Path Stroke="#2DD4BF" StrokeThickness="1.5" Fill="Transparent" Data="M12 16.5a4.5 4.5 0 100-9 4.5 4.5 0 000 9z M12 14a2 2 0 100-4 2 2 0 000 4z"/>
+                    <Path Stroke="{DynamicResource Theme.Primary}" StrokeThickness="1.5" Fill="Transparent" Data="M12 21.5C5.37 21.5 1.5 14.93 1.5 12s3.87-9.5 10.5-9.5 10.5 6.57 10.5 9.5-3.87 9.5-10.5 9.5z"/>
+                    <Path Stroke="{DynamicResource Theme.Primary}" StrokeThickness="1.5" Fill="Transparent" Data="M12 16.5a4.5 4.5 0 100-9 4.5 4.5 0 000 9z M12 14a2 2 0 100-4 2 2 0 000 4z"/>
                 </Canvas>
             </Viewbox>
             <!-- 文本 -->
             <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                <TextBlock Text="20-20-20 视力放松" Foreground="#FFFFFF" FontSize="14" FontWeight="SemiBold" FontFamily="Segoe UI, Microsoft YaHei UI"/>
-                <TextBlock Text="请将视线从屏幕移开，眺望 6 米远处" Foreground="#A1A1AA" FontSize="12" FontFamily="Segoe UI, Microsoft YaHei UI" Margin="0,2,0,0"/>
+                <TextBlock Text="20-20-20 视力放松" Foreground="{DynamicResource Theme.TextBase}" FontSize="14" FontWeight="SemiBold" FontFamily="Segoe UI, Microsoft YaHei UI"/>
+                <TextBlock Text="请将视线从屏幕移开，眺望 6 米远处" Foreground="{DynamicResource Theme.TextMuted}" FontSize="12" FontFamily="Segoe UI, Microsoft YaHei UI" Margin="0,2,0,0"/>
             </StackPanel>
             <!-- 倒计时与跳过 -->
             <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
-                <Border Background="#18181B" CornerRadius="14" Width="40" Height="28" Margin="0,0,8,0">
-                    <TextBlock x:Name="TxtSeconds" Text="20" Foreground="#2DD4BF" FontSize="16" FontWeight="Bold" FontFamily="Segoe UI" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Border Background="{DynamicResource Theme.ControlBg}" CornerRadius="14" Width="40" Height="28" Margin="0,0,8,0">
+                    <TextBlock x:Name="TxtSeconds" Text="20" Foreground="{DynamicResource Theme.Primary}" FontSize="16" FontWeight="Bold" FontFamily="Segoe UI" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Border>
-                <Button Content="✕" ToolTip="关闭本轮微休息" Foreground="#71717A" Background="Transparent" BorderThickness="0" FontSize="14" Padding="6,0" Cursor="Hand" Click="BtnClose_Click">
+                <Button Content="✕" ToolTip="关闭本轮微休息" Foreground="{DynamicResource Theme.TextDesc}" Background="Transparent" BorderThickness="0" FontSize="14" Padding="6,0" Cursor="Hand" Click="BtnClose_Click">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <Border Background="Transparent" CornerRadius="4"><ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>

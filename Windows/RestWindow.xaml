@@ -8,9 +8,9 @@
 
     <Window.Resources>
         <Style x:Key="RestBtn" TargetType="Button">
-            <Setter Property="Foreground" Value="#9CA3AF"/>
-            <Setter Property="Background" Value="#141414"/>
-            <Setter Property="BorderBrush" Value="#2A2A2A"/>
+            <Setter Property="Foreground" Value="{DynamicResource Theme.TextMuted}"/>
+            <Setter Property="Background" Value="{DynamicResource Theme.ControlBg}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource Theme.Border}"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="FontFamily" Value="Segoe UI"/>
@@ -28,8 +28,7 @@
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter Property="Background" Value="{DynamicResource Theme.Sep}"/>
-                                <Setter Property="BorderBrush" Value="#3D3D3D"/>
-                                <Setter Property="Foreground" Value="#E5E7EB"/>
+                                <Setter Property="Foreground" Value="{DynamicResource Theme.TextBase}"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>

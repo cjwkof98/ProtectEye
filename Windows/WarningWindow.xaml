@@ -5,28 +5,51 @@
         WindowStyle="None" AllowsTransparency="True" Background="Transparent"
         Topmost="True" ShowInTaskbar="False" ResizeMode="NoResize"
         Loaded="Window_Loaded">
-    <Border Background="#E61A1A1A" CornerRadius="10" Padding="15">
+    <Window.Resources>
+        <!-- 适配主题的按钮样式 -->
+        <Style x:Key="WarningGhostBtn" TargetType="Button">
+            <Setter Property="Background" Value="{DynamicResource Theme.ControlBg}"/>
+            <Setter Property="Foreground" Value="{DynamicResource Theme.TextBase}"/>
+            <Setter Property="Padding" Value="15,8"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="6" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="WarningPrimaryBtn" TargetType="Button">
+            <Setter Property="Background" Value="{DynamicResource Theme.Primary}"/>
+            <Setter Property="Foreground" Value="#000000"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Padding" Value="20,8"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="6" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Border Background="{DynamicResource Theme.CardBg}" Opacity="0.92" CornerRadius="12" Padding="20,18" BorderBrush="{DynamicResource Theme.Border}" BorderThickness="1">
         <Border.Effect>
-            <DropShadowEffect BlurRadius="15" Direction="270" ShadowDepth="5" Opacity="0.5"/>
+            <DropShadowEffect BlurRadius="20" Direction="270" ShadowDepth="4" Color="Black" Opacity="0.4"/>
         </Border.Effect>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-            <TextBlock Text="⏰ 休息提醒" Foreground="White" FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,10"/>
-            <TextBlock x:Name="TxtCountdown" Text="即将进入休息时间" Foreground="#CCCCCC" FontSize="14" HorizontalAlignment="Center" Margin="0,0,0,15"/>
+            <TextBlock Text="⏰ 护眼提醒" Foreground="{DynamicResource Theme.TextBase}" FontSize="19" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,12" FontFamily="Segoe UI Semibold, Microsoft YaHei UI"/>
+            <TextBlock x:Name="TxtCountdown" Text="即将进入休息时间" Foreground="{DynamicResource Theme.TextMuted}" FontSize="14" HorizontalAlignment="Center" Margin="0,0,0,20" FontFamily="Segoe UI, Microsoft YaHei UI"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Content="跳过本次" Background="#444444" Foreground="White" BorderThickness="0" Padding="15,6" Margin="0,0,15,0" Click="BtnSkip_Click">
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="5"/>
-                        </Style>
-                    </Button.Resources>
-                </Button>
-                <Button Content="立即休息" Background="#2d5a27" Foreground="White" BorderThickness="0" Padding="15,6" Click="BtnRestNow_Click">
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="5"/>
-                        </Style>
-                    </Button.Resources>
-                </Button>
+                <Button Content="跳过本次" Style="{StaticResource WarningGhostBtn}" Margin="0,0,12,0" Click="BtnSkip_Click"/>
+                <Button Content="立即休息" Style="{StaticResource WarningPrimaryBtn}" Click="BtnRestNow_Click"/>
             </StackPanel>
         </StackPanel>
     </Border>

@@ -801,7 +801,7 @@
                         <Border Background="{DynamicResource Theme.PanelBg}" CornerRadius="12" BorderBrush="{DynamicResource Theme.Border}" BorderThickness="1" Padding="24">
                             <StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
-                                    <Image Source="/app.ico" Width="48" Height="48" Margin="0,0,16,0"/>
+                                    <Image Source="/logo_hd.png" Width="48" Height="48" Margin="0,0,16,0"/>
                                     <StackPanel VerticalAlignment="Center">
                                         <TextBlock Text="护眼卫士 · ProtectEye" FontSize="20" FontWeight="Bold" Foreground="{DynamicResource Theme.Primary}" FontFamily="Segoe UI Semibold, Microsoft YaHei UI"/>
                                         <TextBlock Text="{x:Static local:AppVersion.Version}" FontSize="12" Foreground="{DynamicResource Theme.TextMuted}" Margin="0,2,0,0"/>

@@ -8,14 +8,14 @@ namespace ProtectEye.Windows;
 
 public partial class RestWindow : Window
 {
-    private Action _onSkip;
-    private Action _onExtend;
-    private Action<bool> _onPauseToggle;
+    private Action? _onSkip;
+    private Action? _onExtend;
+    private Action<bool>? _onPauseToggle;
     private bool _isPaused = false;
     private DispatcherTimer _clockTimer;
     private DispatcherTimer _poemTimer;
     
-    public RestWindow(Action onSkip, Action onExtend, Action<bool> onPauseToggle)
+    public RestWindow(Action? onSkip = null, Action? onExtend = null, Action<bool>? onPauseToggle = null)
     {
         InitializeComponent();
         _onSkip = onSkip;
@@ -92,6 +92,24 @@ public partial class RestWindow : Window
         
         // 前置抓取桌面截图用于模糊背景，消除 Window_Loaded 被阻塞导致的白屏闪烁
         CaptureAndSetBackground();
+
+        // 填充今日用眼情况
+        try
+        {
+            var summary = LogService.GetTodaySummary();
+            TxtTodayWork.Text = FormatSpan(summary.TotalWork);
+            TxtTodayRest.Text = FormatSpan(summary.TotalRest);
+            TxtTodayOver.Text = $"{summary.Over1HourCount} 次";
+            if (summary.Over1HourCount > 0) TxtTodayOver.Foreground = new SolidColorBrush((System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString("#F59E0B"));
+        }
+        catch { }
+    }
+
+    private static string FormatSpan(TimeSpan ts)
+    {
+        if (ts.TotalHours >= 1) return $"{(int)ts.TotalHours}h{ts.Minutes}m";
+        if (ts.TotalMinutes >= 1) return $"{ts.Minutes}m";
+        return ts.TotalSeconds > 0 ? $"{(int)ts.TotalSeconds}s" : "0m";
     }
 
     private void CyclePoem()

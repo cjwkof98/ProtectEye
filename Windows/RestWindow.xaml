@@ -131,7 +131,7 @@
             </Ellipse>
 
             <!-- 标题 -->
-            <TextBlock Text="休息时间到" Foreground="{DynamicResource Theme.TextMuted}" FontSize="14" FontFamily="Segoe UI" 
+            <TextBlock Text="深度休整进行中" Foreground="{DynamicResource Theme.TextMuted}" FontSize="14" FontFamily="Segoe UI" 
                        HorizontalAlignment="Center" Margin="0,0,0,24"/>
 
             <!-- 大倒计时 -->
@@ -166,9 +166,21 @@
             <!-- 健康护眼贴士 -->
             <TextBlock x:Name="TxtHealthTip" Text="💡 经常转动眼球，有助于放松眼部肌肉"
                        FontFamily="Segoe UI, Microsoft YaHei UI"
-                       Foreground="{DynamicResource Theme.PrimaryDark}" FontSize="14" FontWeight="SemiBold"
+                       Foreground="{DynamicResource Theme.PrimaryDark}" FontSize="18" FontWeight="SemiBold"
                        HorizontalAlignment="Center"
-                       Margin="0,0,0,50" Visibility="Collapsed"/>
+                       Margin="0,0,0,24" Visibility="Collapsed"/>
+
+            <!-- 今日用眼汇总 -->
+            <StackPanel x:Name="PanelTodaySummary" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,50">
+                <TextBlock Text="今日已工作：" Foreground="{DynamicResource Theme.TextMuted}" FontSize="14" FontFamily="Segoe UI, Microsoft YaHei UI"/>
+                <TextBlock x:Name="TxtTodayWork" Text="0h0m" Foreground="{DynamicResource Theme.TextBase}" FontSize="14" FontWeight="SemiBold" FontFamily="Segoe UI" Margin="0,0,16,0"/>
+                
+                <TextBlock Text="今日已休息：" Foreground="{DynamicResource Theme.TextMuted}" FontSize="14" FontFamily="Segoe UI, Microsoft YaHei UI"/>
+                <TextBlock x:Name="TxtTodayRest" Text="0h0m" Foreground="{DynamicResource Theme.PrimaryDark}" FontSize="14" FontWeight="SemiBold" FontFamily="Segoe UI" Margin="0,0,16,0"/>
+                
+                <TextBlock Text="超1小时连续工作：" Foreground="{DynamicResource Theme.TextMuted}" FontSize="14" FontFamily="Segoe UI, Microsoft YaHei UI"/>
+                <TextBlock x:Name="TxtTodayOver" Text="0 次" Foreground="{DynamicResource Theme.TextBase}" FontSize="14" FontWeight="SemiBold" FontFamily="Segoe UI"/>
+            </StackPanel>
 
             <!-- 操作按钮 -->
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">

@@ -10,6 +10,7 @@ public partial class App : System.Windows.Application
 {
     private System.Windows.Forms.NotifyIcon? _notifyIcon;
     private TimerService? _timerService;
+    public TimerService? TimerService => _timerService;
 
     private WarningWindow? _warningWindow;
     private RestWindow? _restWindow;

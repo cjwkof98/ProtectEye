@@ -19,8 +19,21 @@ public partial class MicroBreakWindow : Window
         _timer.Tick += _timer_Tick;
     }
 
+    private static readonly string[] _tips = new[]
+    {
+        "请将视线从屏幕移开，眺望 6 米远处",
+        "请用力眨眼 5 次，保持眼球湿润",
+        "请闭目养神，顺时针/逆时针转动眼球",
+        "请起立伸个懒腰，稍微活动一下身体",
+        "请深呼吸，放松紧绷的肩颈肌肉"
+    };
+
     private void Window_Loaded(object sender, RoutedEventArgs e)
     {
+        // 随机显示一条建议
+        var random = new Random();
+        TxtTip.Text = _tips[random.Next(_tips.Length)];
+
         // 居中靠上显示
         var workArea = SystemParameters.WorkArea;
         this.Left = workArea.Left + (workArea.Width - this.Width) / 2;

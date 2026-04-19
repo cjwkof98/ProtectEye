@@ -49,6 +49,10 @@ public class AppConfig
     // 是否在大休息界面显示健康护眼提示
     public bool ShowHealthTips { get; set; } = true;
 
+    // 健康评分低于阈值时弹出改善习惯提醒
+    public bool EnableHealthScoreAlert { get; set; } = true;
+    public int HealthScoreAlertThreshold { get; set; } = 60;
+
     // 全局快捷键 - 立即休息 (例如 Ctrl+Alt+R)
     public string ImmediateRestShortcut { get; set; } = "Ctrl+Alt+R";
 

@@ -6,6 +6,7 @@
     
     <SolidColorBrush x:Key="Theme.Primary" Color="#2DD4BF"/>
     <SolidColorBrush x:Key="Theme.PrimaryDark" Color="#0D9488"/>
+    <SolidColorBrush x:Key="Theme.PrimaryLight" Color="#5EEAD4"/>
     <Color x:Key="Theme.PrimaryDarkColor">#0D9488</Color>
     <Color x:Key="Theme.ShadowColor">#0D9488</Color> <!-- Neon shadow -->
     

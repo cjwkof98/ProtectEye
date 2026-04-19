@@ -7,6 +7,7 @@
     
     <SolidColorBrush x:Key="Theme.Primary" Color="#38BDF8"/>
     <SolidColorBrush x:Key="Theme.PrimaryDark" Color="#0284C7"/>
+    <SolidColorBrush x:Key="Theme.PrimaryLight" Color="#7DD3FC"/>
     <Color x:Key="Theme.PrimaryDarkColor">#0284C7</Color>
     <Color x:Key="Theme.ShadowColor">#400284C7</Color> <!-- Subtle blue shadow -->
     

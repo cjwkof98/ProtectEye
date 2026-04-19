@@ -18,6 +18,9 @@ public class TimerService
     private int _secondsRemaining;
     public AppState CurrentState { get; private set; } = AppState.Working;
 
+    public int SecondsRemaining => Math.Max(0, _secondsRemaining);
+    public int SecondsToNextMicroBreak => ConfigManager.Current.EnableMicroBreak ? Math.Max(0, 20 * 60 - _secondsSinceLastMicroBreak) : -1;
+
     public event Action<string>? Tick; 
     public event Action<AppState, AppState>? StateChanged;
     public event Action? MicroBreakTriggered;
@@ -26,6 +29,7 @@ public class TimerService
     private AppState _stateBeforePause = AppState.Working;
     private int _secondsSinceLastMicroBreak = 0;
     private DateTime _phaseStartTime;
+    private bool _wasIdle = false;
 
     public TimerService()
     {
@@ -38,6 +42,7 @@ public class TimerService
     {
         LogService.Log(LogEventType.WorkStarted);
         _secondsSinceLastMicroBreak = 0;
+        _wasIdle = false;
         SetState(AppState.Working, ConfigManager.Current.WorkIntervalMinutes * 60);
         _timer.Start();
     }
@@ -92,9 +97,15 @@ public class TimerService
             var idleSeconds = Win32Api.GetIdleTimeSeconds();
             if (idleSeconds > ConfigManager.Current.IdleResetThresholdMinutes * 60)
             {
-                // User has rested naturally. Reset working timer silently
+                _wasIdle = true;
+                return; // Pause the timer and wait for user to return
+            }
+            else if (_wasIdle)
+            {
+                // User just returned from being idle, reset timer
+                _wasIdle = false;
                 StartWorking();
-                return; 
+                return;
             }
         }
 

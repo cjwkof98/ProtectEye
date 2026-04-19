@@ -5,10 +5,10 @@ namespace ProtectEye.Windows;
 
 public partial class WarningWindow : Window
 {
-    private Action _onSkip;
-    private Action _onRestNow;
+    private Action? _onSkip;
+    private Action? _onRestNow;
     
-    public WarningWindow(Action onSkip, Action onRestNow)
+    public WarningWindow(Action? onSkip, Action? onRestNow)
     {
         InitializeComponent();
         _onSkip = onSkip;

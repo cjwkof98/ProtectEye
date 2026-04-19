@@ -334,6 +334,7 @@
                     <ListBoxItem Content="用眼分析"/>
                     <ListBoxItem Content="运行记录"/>
                     <ListBoxItem Content="设置管理"/>
+                    <ListBoxItem Content="关于程序"/>
                 </ListBox>
 
                 <TextBlock Grid.Row="2" Text="{x:Static local:AppVersion.Version}" FontSize="12" Foreground="{DynamicResource Theme.TextMuted}" FontFamily="Segoe UI" FontWeight="SemiBold" HorizontalAlignment="Center"/>
@@ -793,6 +794,43 @@
                                 </StackPanel>
                             </Button>
                         </StackPanel>
+                    </StackPanel>
+
+                    <!-- 关于面板 -->
+                    <StackPanel x:Name="PanelAbout" Visibility="Collapsed">
+                        <Border Background="{DynamicResource Theme.PanelBg}" CornerRadius="12" BorderBrush="{DynamicResource Theme.Border}" BorderThickness="1" Padding="24">
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                                    <Image Source="/app.ico" Width="48" Height="48" Margin="0,0,16,0"/>
+                                    <StackPanel VerticalAlignment="Center">
+                                        <TextBlock Text="护眼卫士 · ProtectEye" FontSize="20" FontWeight="Bold" Foreground="{DynamicResource Theme.Primary}" FontFamily="Segoe UI Semibold, Microsoft YaHei UI"/>
+                                        <TextBlock Text="{x:Static local:AppVersion.Version}" FontSize="12" Foreground="{DynamicResource Theme.TextMuted}" Margin="0,2,0,0"/>
+                                    </StackPanel>
+                                </StackPanel>
+
+                                <TextBlock Text="程序简介" FontSize="15" FontWeight="SemiBold" Foreground="{DynamicResource Theme.TextBase}" Margin="0,0,0,8"/>
+                                <TextBlock Text="ProtectEye 是一款轻量级开源护眼工具，旨在通过科学的 20-20-20 法则和深度休息提醒，帮助长期使用电脑的用户缓解视疲劳，保护视力健康。" 
+                                           Foreground="{DynamicResource Theme.TextDesc}" TextWrapping="Wrap" Margin="0,0,0,20" LineHeight="20"/>
+
+                                <TextBlock Text="快速入门" FontSize="15" FontWeight="SemiBold" Foreground="{DynamicResource Theme.TextBase}" Margin="0,0,0,8"/>
+                                <TextBlock Foreground="{DynamicResource Theme.TextDesc}" TextWrapping="Wrap" Margin="0,0,0,20" LineHeight="20">
+                                    1. 默认每工作 45 分钟会触发一次深度休息，每次休息 5 分钟。<LineBreak/>
+                                    2. 开启 20-20-20 后，每 20 分钟会弹出微休息提示，请远眺 20 英尺（6米）处 20 秒。<LineBreak/>
+                                    3. 程序支持全屏应用自动免打扰，避免在会议或演示时打断您。<LineBreak/>
+                                    4. 您可以在“设置管理”中自定义所有参数并选择喜欢的主题。
+                                </TextBlock>
+
+                                <Border Background="{DynamicResource Theme.Sep}" Height="1" Margin="0,0,0,20"/>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="开源主页：" Foreground="{DynamicResource Theme.TextBase}" VerticalAlignment="Center"/>
+                                    <Button Content="https://github.com/cjwkof98/ProtectEye" Style="{StaticResource GhostBtn}" Padding="0" BorderThickness="0" Background="Transparent" 
+                                            Foreground="{DynamicResource Theme.Primary}" Cursor="Hand" Click="BtnOpenGithub_Click"/>
+                                </StackPanel>
+                                
+                                <TextBlock Text="许可协议：GNU Affero General Public License v3.0 (AGPL-3.0)" Foreground="{DynamicResource Theme.TextMuted}" FontSize="11" Margin="0,12,0,0"/>
+                            </StackPanel>
+                        </Border>
                     </StackPanel>
                 </Grid>
             </ScrollViewer>

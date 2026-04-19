@@ -20,4 +20,4 @@
 3. 在系统托盘双击图标打开设置，开启健康用眼之旅。
 
 ---
-*由 Antigravity 设计开发*
+本程序采用 GNU Affero General Public License v3.0 (AGPL-3.0) 开源协议。

@@ -114,6 +114,7 @@ public partial class MainWindow : Window
         PanelLog.Visibility      = idx == 1 ? Visibility.Visible : Visibility.Collapsed;
         PanelRunLog.Visibility   = idx == 2 ? Visibility.Visible : Visibility.Collapsed;
         PanelSettings.Visibility = idx == 3 ? Visibility.Visible : Visibility.Collapsed;
+        PanelAbout.Visibility    = idx == 4 ? Visibility.Visible : Visibility.Collapsed;
 
         if (idx == 0) RefreshHome();
         if (idx == 1) RefreshAnalysis();
@@ -468,4 +469,19 @@ public partial class MainWindow : Window
     }
 
 
+    private void BtnOpenGithub_Click(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+            {
+                FileName = "https://github.com/cjwkof98/ProtectEye",
+                UseShellExecute = true
+            });
+        }
+        catch (Exception ex)
+        {
+            System.Windows.MessageBox.Show("无法打开链接: " + ex.Message);
+        }
+    }
 }

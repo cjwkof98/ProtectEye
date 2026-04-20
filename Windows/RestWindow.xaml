@@ -4,6 +4,8 @@
         Title="休息时间" 
         WindowStyle="None" AllowsTransparency="True" Background="Transparent"
         Topmost="True" ShowInTaskbar="False" 
+        UseLayoutRounding="True" SnapsToDevicePixels="True"
+        TextOptions.TextFormattingMode="Display"
         Loaded="Window_Loaded">
 
     <Window.Resources>

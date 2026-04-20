@@ -180,6 +180,11 @@ public static class LogService
                     break;
                 case LogEventType.RestSkipped:
                     skipCount++;
+                    if (restStart.HasValue)
+                    {
+                        if (restCount > 0) restCount--;
+                        restStart = null;
+                    }
                     break;
                 case LogEventType.RestCompleted:
                     if (restStart.HasValue) { totalRest += e.Timestamp - restStart.Value; restStart = null; }

@@ -4,6 +4,8 @@
         Title="TrayMenu" Height="Auto" Width="200"
         WindowStyle="None" AllowsTransparency="True" Background="Transparent"
         Topmost="True" ShowInTaskbar="False" SizeToContent="Height"
+        UseLayoutRounding="True" SnapsToDevicePixels="True"
+        TextOptions.TextFormattingMode="Display"
         Deactivated="Window_Deactivated" Loaded="Window_Loaded">
     
     <Window.Resources>
@@ -45,7 +47,10 @@
     </Window.Resources>
 
     <Border CornerRadius="12" Background="{DynamicResource Theme.Bg}" 
-            BorderBrush="{DynamicResource Theme.Border}" BorderThickness="1" ClipToBounds="True">
+            BorderBrush="{DynamicResource Theme.Border}" BorderThickness="1" 
+            RenderOptions.BitmapScalingMode="HighQuality"
+            SnapsToDevicePixels="False"
+            ClipToBounds="True">
         <StackPanel>
             <!-- Header Banner -->
             <Border x:Name="HeaderBanner" Height="90" Background="{DynamicResource Theme.TrayHeaderBg}">

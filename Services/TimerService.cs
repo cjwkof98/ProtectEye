@@ -172,9 +172,8 @@ public class TimerService
     {
         if (CurrentState == AppState.Warning)
         {
-            // User skipped the warning floating window. Don't stop the timer!
-            // When timer runs out natively, HandlePhaseTransition will take place anyway.
-            ChangeState(AppState.Working);
+            LogService.Log(LogEventType.RestSkipped, "跳过预警");
+            StartWorking();
         }
     }
     

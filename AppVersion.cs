@@ -2,5 +2,5 @@ namespace ProtectEye;
 
 public static class AppVersion
 {
-    public const string Version = "v0.3.5";
+    public const string Version = "v0.3.6";
 }

@@ -4,6 +4,8 @@
         Title="运行日志 · ProtectEye"
         Width="660" Height="560"
         WindowStartupLocation="CenterScreen"
+        UseLayoutRounding="True" SnapsToDevicePixels="True"
+        TextOptions.TextFormattingMode="Display"
         Background="#0F0F0F">
 
     <Window.Resources>

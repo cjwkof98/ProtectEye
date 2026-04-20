@@ -4,6 +4,8 @@
         Title="预警提示" SizeToContent="WidthAndHeight" MinWidth="380"
         WindowStyle="None" AllowsTransparency="True" Background="Transparent"
         Topmost="True" ShowInTaskbar="False" ResizeMode="NoResize"
+        UseLayoutRounding="True" SnapsToDevicePixels="True"
+        TextOptions.TextFormattingMode="Display"
         Loaded="Window_Loaded">
     <Window.Resources>
         <!-- 适配主题的按钮样式 -->
@@ -40,25 +42,35 @@
         </Style>
     </Window.Resources>
 
-    <Border Background="{DynamicResource Theme.PanelBg}" CornerRadius="16" Padding="32,28" BorderBrush="{DynamicResource Theme.Border}" BorderThickness="1">
-        <Border.Effect>
-            <DropShadowEffect BlurRadius="24" Direction="270" ShadowDepth="6" Color="Black" Opacity="0.6"/>
-        </Border.Effect>
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,12">
-                <Viewbox Width="24" Height="24" Margin="0,0,8,0">
-                    <Canvas Width="24" Height="24">
-                        <Path Stroke="{DynamicResource Theme.Primary}" StrokeThickness="1.5" Fill="Transparent" Data="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
-                        <Path Stroke="{DynamicResource Theme.Primary}" StrokeThickness="1.5" Fill="Transparent" Data="M12 8v4l2.5 2.5"/>
-                    </Canvas>
-                </Viewbox>
-                <TextBlock Text="护眼预警" Foreground="{DynamicResource Theme.TextBase}" FontSize="18" FontWeight="SemiBold" VerticalAlignment="Center" FontFamily="Segoe UI Semibold, Microsoft YaHei UI"/>
+    <Grid Margin="20">
+        <!-- 阴影隔离层 -->
+        <Border CornerRadius="16" Background="{DynamicResource Theme.PanelBg}" SnapsToDevicePixels="False">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="24" Direction="270" ShadowDepth="6" Color="Black" Opacity="0.5"/>
+            </Border.Effect>
+        </Border>
+
+        <!-- 内容层 -->
+        <Border Background="{DynamicResource Theme.PanelBg}" CornerRadius="16" Padding="32,28" 
+                BorderBrush="{DynamicResource Theme.Border}" BorderThickness="1"
+                RenderOptions.BitmapScalingMode="HighQuality"
+                SnapsToDevicePixels="False">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,12">
+                    <Viewbox Width="24" Height="24" Margin="0,0,8,0">
+                        <Canvas Width="24" Height="24">
+                            <Path Stroke="{DynamicResource Theme.Primary}" StrokeThickness="1.5" Fill="Transparent" Data="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+                            <Path Stroke="{DynamicResource Theme.Primary}" StrokeThickness="1.5" Fill="Transparent" Data="M12 8v4l2.5 2.5"/>
+                        </Canvas>
+                    </Viewbox>
+                    <TextBlock Text="护眼预警" Foreground="{DynamicResource Theme.TextBase}" FontSize="18" FontWeight="SemiBold" VerticalAlignment="Center" FontFamily="Segoe UI Semibold, Microsoft YaHei UI"/>
+                </StackPanel>
+                <TextBlock x:Name="TxtCountdown" Text="即将进入休息时间" Foreground="{DynamicResource Theme.TextDesc}" FontSize="14" HorizontalAlignment="Center" Margin="0,0,0,24" FontFamily="Segoe UI, Microsoft YaHei UI"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Content="跳过本次" Style="{StaticResource WarningGhostBtn}" Margin="0,0,12,0" Click="BtnSkip_Click"/>
+                    <Button Content="立即休息" Style="{StaticResource WarningPrimaryBtn}" Click="BtnRestNow_Click"/>
+                </StackPanel>
             </StackPanel>
-            <TextBlock x:Name="TxtCountdown" Text="即将进入休息时间" Foreground="{DynamicResource Theme.TextDesc}" FontSize="14" HorizontalAlignment="Center" Margin="0,0,0,24" FontFamily="Segoe UI, Microsoft YaHei UI"/>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Content="跳过本次" Style="{StaticResource WarningGhostBtn}" Margin="0,0,12,0" Click="BtnSkip_Click"/>
-                <Button Content="立即休息" Style="{StaticResource WarningPrimaryBtn}" Click="BtnRestNow_Click"/>
-            </StackPanel>
-        </StackPanel>
-    </Border>
+        </Border>
+    </Grid>
 </Window>

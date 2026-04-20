@@ -29,6 +29,12 @@ public partial class App : System.Windows.Application
             return;
         }
 
+        // Create a hidden anchor window to serve as a stable MainWindow
+        // This prevents crashes when TrayMenuWindow is closed and helps standardizing the UI context.
+        var anchor = new Window { Width = 0, Height = 0, WindowStyle = WindowStyle.None, ShowInTaskbar = false, Visibility = Visibility.Hidden };
+        anchor.Show();
+        this.MainWindow = anchor;
+
         _timerService = new TimerService();
         _timerService.StateChanged += OnStateChanged;
         _timerService.Tick += OnTick;
@@ -49,45 +55,31 @@ public partial class App : System.Windows.Application
         _notifyIcon.Visible = true;
         _notifyIcon.DoubleClick += (s, args) => ShowSettings(tabIndex: 0);
 
-        var contextMenu = new System.Windows.Forms.ContextMenuStrip();
-        
-        var menuItemHome = contextMenu.Items.Add("🏠 首页");
-        menuItemHome.Click += (s, args) => ShowSettings(tabIndex: 0);
-
-        var menuItemLog = contextMenu.Items.Add("📊 用眼分析");
-        menuItemLog.Click += (s, args) => ShowSettings(tabIndex: 1);
-
-        var menuItemSettings = contextMenu.Items.Add("⚙ 设置管理");
-        menuItemSettings.Click += (s, args) => ShowSettings(tabIndex: 2);
-        
-        contextMenu.Items.Add(new System.Windows.Forms.ToolStripSeparator());
-        
-        var menuItemRestNow = contextMenu.Items.Add("☕ 立即休息");
-        menuItemRestNow.Click += (s, args) => _timerService?.ForceRestNow();
-        
-        var menuItemPause = contextMenu.Items.Add("⏸ 暂停 / 继续");
-        menuItemPause.Click += (s, args) => 
+        _notifyIcon.MouseClick += (s, args) =>
         {
-            if (_timerService.CurrentState == AppState.Paused)
-                _timerService.Resume();
-            else
-                _timerService.Pause();
+            if (args.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                // Use BeginInvoke (Asynchronous) to avoid blocking the WinForms thread and prevent deadlocks
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    // Close existing menu window if it's already open
+                    foreach (Window win in System.Windows.Application.Current.Windows)
+                    {
+                        if (win is TrayMenuWindow)
+                        {
+                            win.Close();
+                            break;
+                        }
+                    }
+
+                    if (_timerService != null)
+                    {
+                        var trayMenu = new TrayMenuWindow(_timerService, OnTrayMenuClick);
+                        trayMenu.Show();
+                    }
+                }));
+            }
         };
-
-        contextMenu.Items.Add(new System.Windows.Forms.ToolStripSeparator());
-        var menuAbout = contextMenu.Items.Add($"ℹ 关于护眼卫士 {AppVersion.Version}");
-        menuAbout.Click += (s, args) => System.Windows.MessageBox.Show(
-            $"护眼卫士 (ProtectEye)\n版本：{AppVersion.Version}\n\n定时提醒休息，保护眼部健康。",
-            "关于护眼卫士",
-            System.Windows.MessageBoxButton.OK,
-            System.Windows.MessageBoxImage.Information);
-        
-        contextMenu.Items.Add(new System.Windows.Forms.ToolStripSeparator());
-        
-        var menuItemExit = contextMenu.Items.Add("❌ 彻底退出");
-        menuItemExit.Click += (s, args) => Shutdown();
-
-        _notifyIcon.ContextMenuStrip = contextMenu;
         
         // 记录启动事件
         LogService.Log(LogEventType.AppStarted);
@@ -188,6 +180,33 @@ public partial class App : System.Windows.Application
         _settingsWindow.Activate();
         if (tabIndex == 1)
             _settingsWindow.MainTab.SelectedIndex = 1;
+        else if (tabIndex == 2)
+            _settingsWindow.MainTab.SelectedIndex = 2;
+    }
+
+    private void OnTrayMenuClick(string tag)
+    {
+        switch (tag)
+        {
+            case "Home": ShowSettings(0); break;
+            case "Analysis": ShowSettings(1); break;
+            case "Config": ShowSettings(2); break;
+            case "RestNow": _timerService?.ForceRestNow(); break;
+            case "PauseResume":
+                if (_timerService?.CurrentState == AppState.Paused)
+                    _timerService.Resume();
+                else
+                    _timerService?.Pause();
+                break;
+            case "About":
+                System.Windows.MessageBox.Show(
+                    $"护眼卫士 (ProtectEye)\n版本：{AppVersion.Version}\n\n定时提醒休息，保护眼部健康。",
+                    "关于护眼卫士",
+                    System.Windows.MessageBoxButton.OK,
+                    System.Windows.MessageBoxImage.Information);
+                break;
+            case "Exit": Shutdown(); break;
+        }
     }
 
     private void Application_Exit(object sender, ExitEventArgs e)

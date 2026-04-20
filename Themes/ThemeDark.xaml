@@ -23,4 +23,10 @@
     <SolidColorBrush x:Key="Theme.Aurora1" Color="#0D9488"/>
     <SolidColorBrush x:Key="Theme.Aurora2" Color="#1E3A8A"/>
     <SolidColorBrush x:Key="Theme.RestBg" Color="#080A10"/> <!-- Near black for maximal pop -->
+
+    <!-- Tray Menu Resources -->
+    <SolidColorBrush x:Key="Theme.TrayHeaderBg" Color="{StaticResource Theme.PrimaryDarkColor}"/>
+    <SolidColorBrush x:Key="Theme.TrayHeaderText" Color="#0B0E14"/>
+    <SolidColorBrush x:Key="Theme.TrayHeaderPausedBg" Color="#EF4444"/> <!-- Paused Red -->
+    <SolidColorBrush x:Key="Theme.TrayHeaderPausedText" Color="#FFFFFF"/>
 </ResourceDictionary>

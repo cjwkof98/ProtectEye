@@ -1,0 +1,80 @@
+<Window x:Class="ProtectEye.Windows.TrayMenuWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="TrayMenu" Height="Auto" Width="200"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        Topmost="True" ShowInTaskbar="False" SizeToContent="Height"
+        Deactivated="Window_Deactivated" Loaded="Window_Loaded">
+    
+    <Window.Resources>
+        <!-- Menu Button Style -->
+        <Style x:Key="TrayMenuButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="15,10"/>
+            <Setter Property="Foreground" Value="{DynamicResource Theme.TextBase}"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Border" 
+                                Background="{TemplateBinding Background}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource Theme.ControlHover}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource Theme.ControlBg}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Separator Style -->
+        <Style x:Key="TraySeparatorStyle" TargetType="Separator">
+            <Setter Property="Background" Value="{DynamicResource Theme.Sep}"/>
+            <Setter Property="Height" Value="1"/>
+            <Setter Property="Margin" Value="0,4"/>
+        </Style>
+    </Window.Resources>
+
+    <Border CornerRadius="12" Background="{DynamicResource Theme.Bg}" 
+            BorderBrush="{DynamicResource Theme.Border}" BorderThickness="1" ClipToBounds="True">
+        <StackPanel>
+            <!-- Header Banner -->
+            <Border x:Name="HeaderBanner" Height="90" Background="{DynamicResource Theme.TrayHeaderBg}">
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Path x:Name="HeaderIcon" Data="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,3L19,6.11V11C19,15.33 16.32,19.44 12,20.93C7.68,19.44 5,15.33 5,11V6.11L12,3M12,7L9,11H11V15H13V11H15L12,7Z"
+                          Fill="{DynamicResource Theme.TrayHeaderText}" Width="40" Height="40" Stretch="Uniform" Margin="0,0,0,8"/>
+                    <TextBlock x:Name="StateText" Text="正在运行中" 
+                               Foreground="{DynamicResource Theme.TrayHeaderText}" 
+                               FontSize="14" FontWeight="Bold" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Menu Buttons -->
+            <StackPanel Margin="0,4">
+                <Button Style="{StaticResource TrayMenuButtonStyle}" Tag="Home" Click="MenuButton_Click">🏠  显示主菜单</Button>
+                
+                <Separator Style="{StaticResource TraySeparatorStyle}"/>
+                
+                <Button Style="{StaticResource TrayMenuButtonStyle}" Tag="RestNow" Click="MenuButton_Click">☕  立即休息</Button>
+                <Button Style="{StaticResource TrayMenuButtonStyle}" Tag="PauseResume" Click="MenuButton_Click" x:Name="PauseResumeBtn">⏸  暂停运行</Button>
+                
+                <Separator Style="{StaticResource TraySeparatorStyle}"/>
+                
+                <Button Style="{StaticResource TrayMenuButtonStyle}" Tag="About" Click="MenuButton_Click">ℹ  关于</Button>
+                
+                <Separator Style="{StaticResource TraySeparatorStyle}"/>
+                
+                <Button Style="{StaticResource TrayMenuButtonStyle}" Tag="Exit" Click="MenuButton_Click">❌  彻底退出</Button>
+            </StackPanel>
+        </StackPanel>
+    </Border>
+</Window>

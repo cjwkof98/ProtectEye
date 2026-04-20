@@ -121,4 +121,20 @@ public static class Win32Api
 
     [DllImport("user32.dll")]
     public static extern bool UnregisterHotKey(IntPtr hWnd, int id);
+
+    [StructLayout(LayoutKind.Sequential)]
+    public struct POINT
+    {
+        public int X;
+        public int Y;
+    }
+
+    [DllImport("user32.dll")]
+    public static extern bool GetCursorPos(out POINT lpPoint);
+
+    public static System.Windows.Point GetCursorPosition()
+    {
+        GetCursorPos(out POINT lpPoint);
+        return new System.Windows.Point(lpPoint.X, lpPoint.Y);
+    }
 }

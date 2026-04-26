@@ -97,7 +97,11 @@ public class TimerService
             var idleSeconds = Win32Api.GetIdleTimeSeconds();
             if (idleSeconds > ConfigManager.Current.IdleResetThresholdMinutes * 60)
             {
-                _wasIdle = true;
+                if (!_wasIdle)
+                {
+                    _wasIdle = true;
+                    LogService.Log(LogEventType.IdleReset);
+                }
                 return; // Pause the timer and wait for user to return
             }
             else if (_wasIdle)
@@ -119,7 +123,10 @@ public class TimerService
                 // 不要紧贴着预警和大休息时报微休息（如果大休息只剩下不足2分钟，不触发）
                 if (_secondsRemaining > 120)
                 {
-                    MicroBreakTriggered?.Invoke();
+                    if (!(ConfigManager.Current.EnableDND && Win32Api.IsForegroundFullScreen()))
+                    {
+                        MicroBreakTriggered?.Invoke();
+                    }
                 }
                 _secondsSinceLastMicroBreak = 0;
             }
@@ -129,11 +136,18 @@ public class TimerService
         {
             HandlePhaseTransition();
         }
-        else if (CurrentState == AppState.Working && _secondsRemaining == ConfigManager.Current.WarningDurationMinutes * 60)
+        else if (CurrentState == AppState.Working && _secondsRemaining <= ConfigManager.Current.WarningDurationMinutes * 60)
         {
-            // trigger warning phase
-            LogService.Log(LogEventType.WarningShown);
-            ChangeState(AppState.Warning);
+            if (ConfigManager.Current.EnableDND && Win32Api.IsForegroundFullScreen())
+            {
+                // 处于免打扰模式且有全屏应用，跳过预警状态切换，让其继续倒数至 0 由 HandlePhaseTransition 处理推迟
+            }
+            else
+            {
+                // trigger warning phase
+                LogService.Log(LogEventType.WarningShown);
+                ChangeState(AppState.Warning);
+            }
         }
         
         InvokeTick();

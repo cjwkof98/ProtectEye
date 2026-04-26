@@ -126,6 +126,7 @@ public partial class App : System.Windows.Application
                         () => _timerService?.ForceRestNow()
                     );
                 }
+                _warningWindow.Reposition();
                 _warningWindow.Show();
             }
             else if (newState == AppState.Resting)
@@ -232,6 +233,8 @@ public partial class App : System.Windows.Application
     private const int HOTKEY_ID = 9000;
     public void RegisterGlobalHotKey()
     {
+        Win32Api.UnregisterHotKey(IntPtr.Zero, HOTKEY_ID);
+
         var shortcut = ConfigManager.Current.ImmediateRestShortcut;
         if (string.IsNullOrWhiteSpace(shortcut)) return;
 
@@ -254,7 +257,6 @@ public partial class App : System.Windows.Application
             }
         }
         
-        Win32Api.UnregisterHotKey(IntPtr.Zero, HOTKEY_ID);
         if (vk != 0)
         {
             Win32Api.RegisterHotKey(IntPtr.Zero, HOTKEY_ID, modifiers, vk);

@@ -457,8 +457,19 @@ public partial class MainWindow : Window
 
     private void BtnPreviewWarning_Click(object sender, RoutedEventArgs e)
     {
-        var win = new Windows.WarningWindow(null, null);
+        var win = new Windows.WarningWindow(
+            onSkip: null, // 预览模式跳过直接关闭即可，基类已处理 Hide
+            onRestNow: () => 
+            {
+                if (System.Windows.Application.Current is App app) 
+                {
+                    app.TriggerRestNow();
+                    this.Close(); // 触发休息后关闭设置窗口
+                }
+            }
+        );
         win.UpdateTime("1:00");
+        win.Reposition();
         win.Show();
     }
 

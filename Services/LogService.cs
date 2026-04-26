@@ -171,7 +171,7 @@ public static class LogService
                 case LogEventType.WorkStarted:
                 case LogEventType.ResumedByUser:
                     if (restStart.HasValue) { totalRest += e.Timestamp - restStart.Value; restStart = null; }
-                    workStart = e.Timestamp;
+                    if (!workStart.HasValue) workStart = e.Timestamp; // 防止被意外覆盖
                     break;
                 case LogEventType.RestStarted:
                     FinishWorkSession(e.Timestamp);
@@ -185,13 +185,17 @@ public static class LogService
                         if (restCount > 0) restCount--;
                         restStart = null;
                     }
+                    if (!workStart.HasValue) workStart = e.Timestamp;
                     break;
                 case LogEventType.RestCompleted:
                     if (restStart.HasValue) { totalRest += e.Timestamp - restStart.Value; restStart = null; }
-                    workStart = e.Timestamp;
+                    if (!workStart.HasValue) workStart = e.Timestamp;
                     break;
                 case LogEventType.PausedByUser:
+                case LogEventType.AppExited:
+                case LogEventType.IdleReset:
                     FinishWorkSession(e.Timestamp);
+                    if (restStart.HasValue) { totalRest += e.Timestamp - restStart.Value; restStart = null; }
                     break;
             }
         }

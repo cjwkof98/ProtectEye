@@ -466,7 +466,8 @@ public partial class MainWindow : Window
                     app.TriggerRestNow();
                     this.Close(); // 触发休息后关闭设置窗口
                 }
-            }
+            },
+            onPostpone: null // 预览模式推迟直接关闭即可
         );
         win.UpdateTime("1:00");
         win.Reposition();

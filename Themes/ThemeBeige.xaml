@@ -10,6 +10,10 @@
     <SolidColorBrush x:Key="Theme.PrimaryLight" Color="#EA580C"/>
     <Color x:Key="Theme.PrimaryDarkColor">#9A3412</Color>
     <Color x:Key="Theme.ShadowColor">#20C2410C</Color>
+    <SolidColorBrush x:Key="Theme.WarningGlow" Color="#1AC2410C"/>
+    <SolidColorBrush x:Key="Theme.WarningIconBg" Color="#33C2410C"/>
+    
+    <SolidColorBrush x:Key="Theme.PrimaryText" Color="#FFFFFF"/> <!-- White text on dark Rust Orange -->
     
     <SolidColorBrush x:Key="Theme.TextBase" Color="#2D2926"/> <!-- Warm Charcoal -->
     <SolidColorBrush x:Key="Theme.TextMuted" Color="#57534E"/>

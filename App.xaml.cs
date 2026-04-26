@@ -123,7 +123,8 @@ public partial class App : System.Windows.Application
                 {
                     _warningWindow = new WarningWindow(
                         () => _timerService?.SkipWarning(),
-                        () => _timerService?.ForceRestNow()
+                        () => _timerService?.ForceRestNow(),
+                        (minutes) => _timerService?.PostponeWarning(minutes)
                     );
                 }
                 _warningWindow.Reposition();

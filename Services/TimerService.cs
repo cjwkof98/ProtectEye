@@ -190,6 +190,15 @@ public class TimerService
             StartWorking();
         }
     }
+
+    public void PostponeWarning(int minutes)
+    {
+        if (CurrentState == AppState.Warning)
+        {
+            LogService.Log(LogEventType.WorkStarted, $"推迟休息 {minutes} 分钟");
+            SetState(AppState.Working, minutes * 60);
+        }
+    }
     
     public void SkipRest()
     {

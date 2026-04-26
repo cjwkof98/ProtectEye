@@ -44,7 +44,7 @@
                         <Border Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="5" Padding="{TemplateBinding Padding}">
+                                CornerRadius="0" Padding="{TemplateBinding Padding}">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -127,7 +127,7 @@
         </StackPanel>
 
         <!-- 日志列表 -->
-        <Border Grid.Row="3" Background="#0A0A0A" CornerRadius="8" BorderBrush="#1E1E1E" BorderThickness="1">
+        <Border Grid.Row="3" Background="#0A0A0A" CornerRadius="0" BorderBrush="#1E1E1E" BorderThickness="1">
             <ScrollViewer x:Name="ScrollLog" VerticalScrollBarVisibility="Auto" Padding="0">
                 <ItemsControl x:Name="LogList" Focusable="False">
                     <ItemsControl.ItemTemplate>

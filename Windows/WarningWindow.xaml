@@ -1,7 +1,7 @@
 <Window x:Class="ProtectEye.Windows.WarningWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="预警提示" SizeToContent="WidthAndHeight" MinWidth="380"
+        Title="预警提示" SizeToContent="WidthAndHeight" MinWidth="320"
         WindowStyle="None" AllowsTransparency="True" Background="Transparent"
         Topmost="True" ShowInTaskbar="False" ResizeMode="NoResize"
         UseLayoutRounding="True" SnapsToDevicePixels="True"
@@ -17,7 +17,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border x:Name="Bg" Background="{TemplateBinding Background}" CornerRadius="6" Padding="{TemplateBinding Padding}">
+                        <Border x:Name="Bg" Background="{TemplateBinding Background}" CornerRadius="0" Padding="{TemplateBinding Padding}">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -34,14 +34,14 @@
         </Style>
         <Style x:Key="WarningPrimaryBtn" TargetType="Button">
             <Setter Property="Background" Value="{DynamicResource Theme.Primary}"/>
-            <Setter Property="Foreground" Value="#000000"/>
+            <Setter Property="Foreground" Value="{DynamicResource Theme.PrimaryText}"/>
             <Setter Property="FontWeight" Value="SemiBold"/>
             <Setter Property="Padding" Value="20,8"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border x:Name="Bg" Background="{TemplateBinding Background}" CornerRadius="6" Padding="{TemplateBinding Padding}">
+                        <Border x:Name="Bg" Background="{TemplateBinding Background}" CornerRadius="0" Padding="{TemplateBinding Padding}">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -56,36 +56,85 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="WarningTextBtn" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{DynamicResource Theme.TextMuted}"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="Transparent" Padding="10,4">
+                            <TextBlock x:Name="Txt" Text="{TemplateBinding Content}" TextDecorations="Underline" Foreground="{TemplateBinding Foreground}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Txt" Property="Foreground" Value="{DynamicResource Theme.TextBase}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="Txt" Property="Opacity" Value="0.7"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
-
-    <Grid Margin="20">
+    <Grid Margin="16">
         <!-- 阴影隔离层 -->
-        <Border CornerRadius="16" Background="{DynamicResource Theme.PanelBg}" SnapsToDevicePixels="False">
+        <Border CornerRadius="0" Background="{DynamicResource Theme.PanelBg}" SnapsToDevicePixels="False">
             <Border.Effect>
                 <DropShadowEffect BlurRadius="24" Direction="270" ShadowDepth="6" Color="Black" Opacity="0.5"/>
             </Border.Effect>
         </Border>
 
         <!-- 内容层 -->
-        <Border Background="{DynamicResource Theme.PanelBg}" CornerRadius="16" Padding="32,28" 
+        <Border Background="{DynamicResource Theme.PanelBg}" CornerRadius="0" Padding="24,28,24,20" 
                 BorderBrush="{DynamicResource Theme.Border}" BorderThickness="1"
                 RenderOptions.BitmapScalingMode="HighQuality"
                 SnapsToDevicePixels="False">
-            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,12">
-                    <Viewbox Width="24" Height="24" Margin="0,0,8,0">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Stretch">
+                
+                <!-- Iconsax Header Logo -->
+                <Grid HorizontalAlignment="Center" Margin="0,0,0,12">
+                    <Ellipse Width="48" Height="48" Fill="{DynamicResource Theme.WarningGlow}"/>
+                    <Ellipse Width="36" Height="36" Fill="{DynamicResource Theme.WarningIconBg}"/>
+                    <Viewbox Width="20" Height="20">
                         <Canvas Width="24" Height="24">
-                            <Path Stroke="{DynamicResource Theme.Primary}" StrokeThickness="1.5" Fill="Transparent" Data="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
-                            <Path Stroke="{DynamicResource Theme.Primary}" StrokeThickness="1.5" Fill="Transparent" Data="M12 8v4l2.5 2.5"/>
+                            <!-- Iconsax Bold Time-Circle -->
+                            <Path Fill="{DynamicResource Theme.Primary}" Opacity="0.4" Data="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"/>
+                            <Path Fill="{DynamicResource Theme.Primary}" Data="M12.75 7v5h5v1.5h-6.5V7h1.5z"/>
                         </Canvas>
                     </Viewbox>
-                    <TextBlock Text="护眼预警" Foreground="{DynamicResource Theme.TextBase}" FontSize="18" FontWeight="SemiBold" VerticalAlignment="Center" FontFamily="Segoe UI Semibold, Microsoft YaHei UI"/>
+                </Grid>
+
+                <TextBlock Text="护眼预警" Foreground="{DynamicResource Theme.TextBase}" FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" FontFamily="Segoe UI, Microsoft YaHei UI" Margin="0,0,0,6"/>
+                <TextBlock x:Name="TxtCountdown" Text="距离休息还有 1:00" Foreground="{DynamicResource Theme.TextDesc}" FontSize="13" HorizontalAlignment="Center" Margin="0,0,0,20" FontFamily="Segoe UI, Microsoft YaHei UI"/>
+
+                <!-- Main Rest Action -->
+                <Button Style="{StaticResource WarningPrimaryBtn}" Height="40" Margin="0,0,0,16" Click="BtnRestNow_Click">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Viewbox Width="18" Height="18" Margin="0,0,6,0">
+                            <Canvas Width="24" Height="24">
+                                <Path Fill="{DynamicResource Theme.PrimaryText}" Data="M2 22h20a1 1 0 0 0 0-2H2a1 1 0 0 0 0 2zm18-7.5V6a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v8.5a6.5 6.5 0 1 0 16 0zM17.5 6v7.75a4.5 4.5 0 1 1-11 0V6a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2z"/>
+                            </Canvas>
+                        </Viewbox>
+                        <TextBlock Text="立即休息" FontSize="14" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,0,1"/>
+                    </StackPanel>
+                </Button>
+
+                <!-- Secondary Actions -->
+                <TextBlock Text="推迟休息" Foreground="{DynamicResource Theme.TextMuted}" FontSize="12" HorizontalAlignment="Center" Margin="0,0,0,8"/>
+                
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,12">
+                    <Button Content="+ 3 分钟" Style="{StaticResource WarningGhostBtn}" Width="76" Padding="0,6" Margin="0,0,8,0" Click="BtnPostpone3_Click"/>
+                    <Button Content="+ 5 分钟" Style="{StaticResource WarningGhostBtn}" Width="76" Padding="0,6" Margin="0,0,8,0" Click="BtnPostpone5_Click"/>
+                    <Button Content="+ 10 分钟" Style="{StaticResource WarningGhostBtn}" Width="76" Padding="0,6" Click="BtnPostpone10_Click"/>
                 </StackPanel>
-                <TextBlock x:Name="TxtCountdown" Text="即将进入休息时间" Foreground="{DynamicResource Theme.TextDesc}" FontSize="14" HorizontalAlignment="Center" Margin="0,0,0,24" FontFamily="Segoe UI, Microsoft YaHei UI"/>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Button Content="跳过本次" Style="{StaticResource WarningGhostBtn}" Margin="0,0,12,0" Click="BtnSkip_Click"/>
-                    <Button Content="立即休息" Style="{StaticResource WarningPrimaryBtn}" Click="BtnRestNow_Click"/>
-                </StackPanel>
+
+                <!-- Tertiary Action -->
+                <Button Content="跳过本次" Style="{StaticResource WarningTextBtn}" HorizontalAlignment="Center" Click="BtnSkip_Click"/>
+
             </StackPanel>
         </Border>
     </Grid>

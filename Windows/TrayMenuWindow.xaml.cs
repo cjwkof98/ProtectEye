@@ -23,29 +23,33 @@ public partial class TrayMenuWindow : Window
 
     private void UpdateStatus()
     {
+        var greenBrush = new SolidColorBrush(System.Windows.Media.Color.FromRgb(34, 197, 94)); // Tailwind Green 500
+        var redBrush = new SolidColorBrush(System.Windows.Media.Color.FromRgb(239, 68, 68));   // Tailwind Red 500
+        var whiteBrush = new SolidColorBrush(System.Windows.Media.Colors.White);
+
         if (_timerService.CurrentState == AppState.Paused)
         {
             StateText.Text = "已暂停运行";
             PauseResumeBtn.Content = "▶  继续运行";
-            HeaderBanner.SetResourceReference(Border.BackgroundProperty, "Theme.TrayHeaderPausedBg");
-            HeaderIcon.SetResourceReference(System.Windows.Shapes.Path.FillProperty, "Theme.TrayHeaderPausedText");
-            StateText.SetResourceReference(TextBlock.ForegroundProperty, "Theme.TrayHeaderPausedText");
+            HeaderBanner.Background = redBrush;
+            HeaderIcon.Fill = whiteBrush;
+            StateText.Foreground = whiteBrush;
         }
         else if (_timerService.CurrentState == AppState.Resting)
         {
             StateText.Text = "正在休息中";
             PauseResumeBtn.Content = "⏸  暂停运行";
-            HeaderBanner.SetResourceReference(Border.BackgroundProperty, "Theme.TrayHeaderBg");
-            HeaderIcon.SetResourceReference(System.Windows.Shapes.Path.FillProperty, "Theme.TrayHeaderText");
-            StateText.SetResourceReference(TextBlock.ForegroundProperty, "Theme.TrayHeaderText");
+            HeaderBanner.Background = greenBrush;
+            HeaderIcon.Fill = whiteBrush;
+            StateText.Foreground = whiteBrush;
         }
         else
         {
             StateText.Text = "正在运行中";
             PauseResumeBtn.Content = "⏸  暂停运行";
-            HeaderBanner.SetResourceReference(Border.BackgroundProperty, "Theme.TrayHeaderBg");
-            HeaderIcon.SetResourceReference(System.Windows.Shapes.Path.FillProperty, "Theme.TrayHeaderText");
-            StateText.SetResourceReference(TextBlock.ForegroundProperty, "Theme.TrayHeaderText");
+            HeaderBanner.Background = greenBrush;
+            HeaderIcon.Fill = whiteBrush;
+            StateText.Foreground = whiteBrush;
         }
     }
 

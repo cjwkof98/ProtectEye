@@ -46,7 +46,7 @@
         </Style>
     </Window.Resources>
 
-    <Border CornerRadius="12" Background="{DynamicResource Theme.Bg}" 
+    <Border CornerRadius="0" Background="{DynamicResource Theme.Bg}" 
             BorderBrush="{DynamicResource Theme.Border}" BorderThickness="1" 
             RenderOptions.BitmapScalingMode="HighQuality"
             SnapsToDevicePixels="False"

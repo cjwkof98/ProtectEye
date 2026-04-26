@@ -7,12 +7,14 @@ public partial class WarningWindow : Window
 {
     private Action? _onSkip;
     private Action? _onRestNow;
+    private Action<int>? _onPostpone;
     
-    public WarningWindow(Action? onSkip, Action? onRestNow)
+    public WarningWindow(Action? onSkip, Action? onRestNow, Action<int>? onPostpone)
     {
         InitializeComponent();
         _onSkip = onSkip;
         _onRestNow = onRestNow;
+        _onPostpone = onPostpone;
     }
 
     private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -28,7 +30,7 @@ public partial class WarningWindow : Window
         if (this.ActualWidth == 0) this.UpdateLayout(); 
         
         var workArea = SystemParameters.WorkArea;
-        double width = this.ActualWidth > 0 ? this.ActualWidth : 380; // 回退值
+        double width = this.ActualWidth > 0 ? this.ActualWidth : 320; // 回退值
         double height = this.ActualHeight > 0 ? this.ActualHeight : 180;
 
         this.Left = workArea.Right - width - 20;
@@ -49,6 +51,24 @@ public partial class WarningWindow : Window
     private void BtnRestNow_Click(object sender, RoutedEventArgs e)
     {
         _onRestNow?.Invoke();
+        this.Hide();
+    }
+
+    private void BtnPostpone3_Click(object sender, RoutedEventArgs e)
+    {
+        _onPostpone?.Invoke(3);
+        this.Hide();
+    }
+
+    private void BtnPostpone5_Click(object sender, RoutedEventArgs e)
+    {
+        _onPostpone?.Invoke(5);
+        this.Hide();
+    }
+
+    private void BtnPostpone10_Click(object sender, RoutedEventArgs e)
+    {
+        _onPostpone?.Invoke(10);
         this.Hide();
     }
 }

@@ -9,6 +9,10 @@
     <SolidColorBrush x:Key="Theme.PrimaryLight" Color="#5EEAD4"/>
     <Color x:Key="Theme.PrimaryDarkColor">#0D9488</Color>
     <Color x:Key="Theme.ShadowColor">#0D9488</Color> <!-- Neon shadow -->
+    <SolidColorBrush x:Key="Theme.WarningGlow" Color="#1A2DD4BF"/>
+    <SolidColorBrush x:Key="Theme.WarningIconBg" Color="#332DD4BF"/>
+    
+    <SolidColorBrush x:Key="Theme.PrimaryText" Color="#0B0E14"/> <!-- Dark text on bright Teal -->
     
     <SolidColorBrush x:Key="Theme.TextBase" Color="#F8FAFC"/>
     <SolidColorBrush x:Key="Theme.TextMuted" Color="#94A3B8"/>
